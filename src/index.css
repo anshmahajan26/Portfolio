@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Tokens */
+  /* Base surfaces */
+  --bg-base: #121214;          /* near-black graphite */
+  --bg-elevated: #1B1B1F;
+  --bg-glass: rgba(255, 255, 255, 0.06);
+  --bg-glass-strong: rgba(255, 255, 255, 0.10);
+  --border-glass: rgba(255, 255, 255, 0.14);
+
+  /* Neumorphic surface (light-mode alt / card variant) */
+  --neu-bg: #1E1E22;
+  --neu-shadow-dark: rgba(0, 0, 0, 0.55);
+  --neu-shadow-light: rgba(255, 255, 255, 0.04);
+
+  /* Accent — warm amber → rose gradient (NOT blue) */
+  --accent-1: #F5A524;   /* amber */
+  --accent-2: #F4478B;   /* rose/magenta */
+  --accent-gradient: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+
+  /* Text */
+  --text-primary: #F5F5F7;
+  --text-secondary: #A1A1AA;
+  --text-muted: #6B6B73;
+
+  /* Global Motion Easings */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light Mode Variables Override */
+body.light-mode {
+  --bg-base: #f5f5f7;          /* warm light grey */
+  --bg-elevated: #eaeaea;
+  --bg-glass: rgba(0, 0, 0, 0.04);
+  --bg-glass-strong: rgba(0, 0, 0, 0.08);
+  --border-glass: rgba(0, 0, 0, 0.08);
+
+  --neu-bg: #f0f0f3;
+  --neu-shadow-dark: rgba(0, 0, 0, 0.12);
+  --neu-shadow-light: rgba(255, 255, 255, 0.90);
+
+  --text-primary: #121214;     /* near-black graphite */
+  --text-secondary: #51515a;
+  --text-muted: #8e8e93;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1rem; /* 16px mobile */
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.4s var(--ease-standard), color 0.4s var(--ease-standard);
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.125rem; /* 18px desktop */
+  }
+}
+
+/* Typography scale using clamp() */
+h1, .h1 {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h2, .h2 {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.75rem, 3vw + 1rem, 3rem);
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+h3, .h3 {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.25rem, 1.5vw + 1rem, 1.75rem);
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.caption, .section-label {
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Layout Grid & Container system */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-inline: 0;
+  }
+}
+
+/* Section vertical rhythm */
+section, .section-padding {
+  padding-block: 4rem;
+}
+
+@media (min-width: 768px) {
+  section, .section-padding {
+    padding-block: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section, .section-padding {
+    padding-block: 8rem;
+  }
+}
+
+/* Grid columns per breakpoint: 4-col (<640px), 8-col (640–1024px), 12-col (≥1024px) */
+.grid-layout {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .grid-layout {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-layout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/* Spanning utilities for our custom grid */
+.col-span-1 { grid-column: span 1 / span 1; }
+.col-span-2 { grid-column: span 2 / span 2; }
+.col-span-3 { grid-column: span 3 / span 3; }
+.col-span-4 { grid-column: span 4 / span 4; }
+.col-span-full { grid-column: 1 / -1; }
+
+@media (min-width: 640px) {
+  .sm-col-span-1 { grid-column: span 1 / span 1; }
+  .sm-col-span-2 { grid-column: span 2 / span 2; }
+  .sm-col-span-3 { grid-column: span 3 / span 3; }
+  .sm-col-span-4 { grid-column: span 4 / span 4; }
+  .sm-col-span-5 { grid-column: span 5 / span 5; }
+  .sm-col-span-6 { grid-column: span 6 / span 6; }
+  .sm-col-span-7 { grid-column: span 7 / span 7; }
+  .sm-col-span-8 { grid-column: span 8 / span 8; }
+}
+
+@media (min-width: 1024px) {
+  .lg-col-span-1 { grid-column: span 1 / span 1; }
+  .lg-col-span-2 { grid-column: span 2 / span 2; }
+  .lg-col-span-3 { grid-column: span 3 / span 3; }
+  .lg-col-span-4 { grid-column: span 4 / span 4; }
+  .lg-col-span-5 { grid-column: span 5 / span 5; }
+  .lg-col-span-6 { grid-column: span 6 / span 6; }
+  .lg-col-span-7 { grid-column: span 7 / span 7; }
+  .lg-col-span-8 { grid-column: span 8 / span 8; }
+  .lg-col-span-9 { grid-column: span 9 / span 9; }
+  .lg-col-span-10 { grid-column: span 10 / span 10; }
+  .lg-col-span-11 { grid-column: span 11 / span 11; }
+  .lg-col-span-12 { grid-column: span 12 / span 12; }
+}
+
+/* Glassmorphism recipe */
+.glassmorphism {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.glassmorphism-strong {
+  background: var(--bg-glass-strong);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Neumorphism recipe */
+.neumorphic {
+  background: var(--neu-bg);
+  border-radius: 16px;
+  box-shadow: 8px 8px 16px var(--neu-shadow-dark), -6px -6px 14px var(--neu-shadow-light);
+  border: 1px solid transparent;
+  transition: box-shadow 0.25s var(--ease-snappy), transform 0.25s var(--ease-snappy);
+}
+
+/* Pressed/active state: swap to inset box-shadow */
+.neumorphic:active,
+.neumorphic.active,
+.neumorphic-active {
+  box-shadow: inset 4px 4px 8px var(--neu-shadow-dark), inset -4px -4px 8px var(--neu-shadow-light);
+}
+
+/* Global prefers-reduced-motion: reduce rules */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0.2s !important;
+    animation-iteration-count: 1 !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.2s !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* For manual GSAP or framer motion style overrides if needed */
+  .motion-safe-only {
+    display: none !important;
+  }
+  
+  /* Simple opacity fades fallback */
+  .fade-reduced-motion {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out !important;
+  }
+  .fade-reduced-motion.visible {
+    opacity: 1;
+  }
+}

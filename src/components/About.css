@@ -1,0 +1,141 @@
+.about-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-base);
+  overflow: hidden;
+  z-index: 2;
+  border-top: 1px solid var(--border-glass);
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .about-container {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 48px;
+  }
+}
+
+/* Image Column Styles */
+.about-image-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .about-image-column {
+    grid-column: span 5 / span 5;
+  }
+}
+
+.about-image-frame {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4/5;
+  border-radius: 24px;
+  border: 2px solid var(--border-glass);
+  padding: 8px; /* Photo inset */
+  box-sizing: border-box;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 1024px) {
+  .about-image-frame {
+    max-width: 100%;
+  }
+}
+
+.about-image-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-elevated);
+  transform: translateZ(20px); /* 3D layer pop */
+}
+
+.about-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text Column Styles */
+.about-text-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+@media (min-width: 1024px) {
+  .about-text-column {
+    grid-column: span 7 / span 7;
+  }
+}
+
+.about-heading {
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+.about-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Stat Cards */
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .about-stats-grid {
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
+  }
+}
+
+.stat-card {
+  min-width: 140px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}

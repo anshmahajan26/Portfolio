@@ -1,0 +1,265 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bg-base);
+  padding-inline: 1rem;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    min-height: 100vh;
+  }
+}
+
+/* Mesh Background Blobs */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.blob-amber {
+  top: 15%;
+  left: 10%;
+  width: clamp(250px, 35vw, 450px);
+  height: clamp(250px, 35vw, 450px);
+  background: var(--accent-1);
+}
+
+.blob-rose {
+  bottom: 15%;
+  right: 10%;
+  width: clamp(300px, 40vw, 500px);
+  height: clamp(300px, 40vw, 500px);
+  background: var(--accent-2);
+}
+
+.blob-graphite {
+  top: 40%;
+  left: 45%;
+  width: clamp(200px, 30vw, 400px);
+  height: clamp(200px, 30vw, 400px);
+  background: var(--bg-elevated);
+}
+
+/* Fallback for prefers-reduced-motion where blobs don't drift and opacity stays fixed */
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob {
+    opacity: 0.2;
+    filter: blur(140px);
+    transform: none !important;
+  }
+  .hero-bg {
+    opacity: 1 !important;
+    scale: 1 !important;
+  }
+}
+
+/* Hero Content Area */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 840px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding-block: 80px;
+}
+
+.hero-caption {
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+  margin-bottom: 8px;
+}
+
+.hero-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+/* Clip Reveal Words */
+.hero-word-wrapper {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.1;
+  padding-bottom: 0.05em;
+}
+
+.hero-word-inner {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Role Rotator (Typewriter) */
+.role-rotator {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.25rem, 2vw + 1rem, 2.25rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.role-text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.role-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--accent-2);
+  margin-left: 4px;
+  animation: blink-cursor 0.8s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  from, to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: var(--accent-2);
+  }
+}
+
+/* Intro Description */
+.hero-description {
+  font-size: clamp(1rem, 1.2vw + 0.8rem, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+/* Actions/CTA */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .hero-actions {
+    flex-direction: row;
+  }
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding-inline: 28px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+@media (min-width: 480px) {
+  .hero-btn {
+    width: auto;
+  }
+}
+
+/* Primary CTA styling */
+.primary-btn {
+  background: var(--accent-gradient);
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(245, 165, 36, 0.25);
+  border: none;
+}
+
+/* Secondary CTA styling using Glassmorphism */
+.secondary-btn {
+  color: var(--text-primary) !important;
+}
+
+/* Scroll Cue Section */
+.scroll-cue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.scroll-cue-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  position: relative;
+  width: 1px;
+  height: 40px;
+  background: var(--text-muted);
+  overflow: hidden;
+}
+
+.scroll-dot {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-dot {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
