@@ -54,19 +54,20 @@
   position: absolute;
   top: 0;
   left: 24px;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--accent-gradient);
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 10px var(--accent-1);
-  z-index: 2;
+  box-shadow: 0 0 12px var(--accent-1);
+  z-index: 5;
   transform-origin: center;
 }
 
 @media (min-width: 768px) {
   .timeline-progress-dot {
     left: 50%;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -147,6 +148,13 @@
   padding: 24px;
   box-sizing: border-box;
   text-align: left;
+  transition: transform 0.4s var(--ease-standard), box-shadow 0.4s var(--ease-standard), border-color 0.4s var(--ease-standard);
+}
+
+.timeline-card.highlighted {
+  transform: scale(1.05) !important;
+  border-color: var(--accent-1) !important;
+  box-shadow: 0 0 20px rgba(245, 165, 36, 0.25) !important;
 }
 
 @media (min-width: 768px) {

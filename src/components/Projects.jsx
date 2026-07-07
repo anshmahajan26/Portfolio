@@ -102,6 +102,19 @@ export default function Projects() {
             ease: "power3.out",
             overwrite: "auto"
           }),
+          onLeave: batch => gsap.to(batch, {
+            opacity: 0,
+            y: 40,
+            overwrite: "auto"
+          }),
+          onEnterBack: batch => gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: "power3.out",
+            overwrite: "auto"
+          }),
           onLeaveBack: batch => gsap.to(batch, {
             opacity: 0,
             y: 40,

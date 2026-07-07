@@ -96,7 +96,7 @@ export default function About() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 75%', // Starts when About section is 75% from the top of viewport
-          toggleActions: 'play none none none'
+          toggleActions: 'play reverse play reverse'
         }
       });
 

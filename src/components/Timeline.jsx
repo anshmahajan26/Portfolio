@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -50,6 +50,7 @@ export default function Timeline() {
   const lineRef = useRef(null);
   const progressDotRef = useRef(null);
   const timelineRef = useRef(null);
+  const [activeCardId, setActiveCardId] = useState(null);
 
   // GSAP ScrollTrigger for vertical timeline line drawing & moving progress dot
   useEffect(() => {
@@ -72,7 +73,7 @@ export default function Timeline() {
         }
       );
 
-      // 2. Animate progress dot along the line
+      // 2. Animate tracker dot along the line
       gsap.fromTo(progressDotRef.current,
         { 
           y: 0,
@@ -80,7 +81,10 @@ export default function Timeline() {
           yPercent: -50
         },
         {
-          y: () => timelineRef.current.offsetHeight,
+          y: () => {
+            const layout = timelineRef.current?.querySelector('.timeline-layout');
+            return layout ? layout.offsetHeight : 0;
+          },
           xPercent: -50,
           yPercent: -50,
           ease: 'none',
@@ -88,7 +92,33 @@ export default function Timeline() {
             trigger: timelineRef.current,
             start: 'top 70%',
             end: 'bottom 80%',
-            scrub: 0.5
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const layout = timelineRef.current?.querySelector('.timeline-layout');
+              const totalHeight = layout ? layout.offsetHeight : 0;
+              const dotY = progress * totalHeight;
+
+              const items = timelineRef.current?.querySelectorAll('.timeline-item');
+              let currentActiveId = null;
+
+              if (items) {
+                items.forEach((itemNode) => {
+                  const id = parseInt(itemNode.getAttribute('data-id'));
+                  const nodeElement = itemNode.querySelector('.timeline-node');
+                  if (!nodeElement) return;
+
+                  // offsetTop relative to parent (.timeline-layout)
+                  const nodeY = itemNode.offsetTop + nodeElement.offsetTop + (nodeElement.offsetHeight / 2);
+
+                  if (Math.abs(dotY - nodeY) <= 30) {
+                    currentActiveId = id;
+                  }
+                });
+              }
+              setActiveCardId(currentActiveId);
+            }
           }
         }
       );
@@ -137,13 +167,14 @@ export default function Timeline() {
           {/* Moving progress dot on scroll */}
           <div ref={progressDotRef} className="timeline-progress-dot" />
 
-          {/* Timeline Items */}
+           {/* Timeline Items */}
           {timelineData.map((item) => {
             const isLeft = item.side === 'left';
             
             return (
               <div 
                 key={item.id} 
+                data-id={item.id}
                 className={`timeline-item ${isLeft ? 'left' : 'right'}`}
               >
                 {/* Neumorphic Pulsing Node */}
@@ -151,7 +182,7 @@ export default function Timeline() {
 
                 {/* Card Container with slide in animation on scroll */}
                 <motion.div
-                  className="timeline-card glassmorphism"
+                  className={`timeline-card glassmorphism ${activeCardId === item.id ? 'highlighted' : ''}`}
                   variants={getCardVariants(item.side)}
                   initial="hidden"
                   whileInView="visible"
