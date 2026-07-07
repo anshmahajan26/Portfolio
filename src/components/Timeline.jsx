@@ -55,24 +55,23 @@ export default function Timeline() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    const anim = gsap.fromTo(lineRef.current,
-      { scaleY: 0 },
-      {
-        scaleY: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: timelineRef.current,
-          start: 'top 70%',
-          end: 'bottom 80%',
-          scrub: 0.5
+    const ctx = gsap.context(() => {
+      gsap.fromTo(lineRef.current,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: 'top 70%',
+            end: 'bottom 80%',
+            scrub: 0.5
+          }
         }
-      }
-    );
+      );
+    }, timelineRef);
 
-    return () => {
-      if (anim.scrollTrigger) anim.scrollTrigger.kill();
-      anim.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

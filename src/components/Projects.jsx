@@ -81,43 +81,42 @@ export default function Projects() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
+    let ctx;
     // Timeout allows AnimatePresence layout transitions to finalize before recalculating triggers
     const timer = setTimeout(() => {
       const cards = gridRef.current?.querySelectorAll('.project-card');
       if (!cards || cards.length === 0) return;
 
-      // Clean up previous ScrollTriggers for these cards
-      ScrollTrigger.getAll().forEach(t => {
-        if (t.vars.trigger === cards[0] || t.vars.trigger === cards[cards.length - 1]) {
-          t.kill();
-        }
-      });
+      ctx = gsap.context(() => {
+        // Set initial values
+        gsap.set(cards, { opacity: 0, y: 40 });
 
-      // Set initial values
-      gsap.set(cards, { opacity: 0, y: 40 });
+        // Create new batch reveal
+        ScrollTrigger.batch(cards, {
+          interval: 0.1,
+          onEnter: batch => gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: "power3.out",
+            overwrite: "auto"
+          }),
+          onLeaveBack: batch => gsap.to(batch, {
+            opacity: 0,
+            y: 40,
+            overwrite: "auto"
+          })
+        });
 
-      // Create new batch reveal
-      const batch = ScrollTrigger.batch(cards, {
-        interval: 0.1,
-        onEnter: batch => gsap.to(batch, {
-          opacity: 1,
-          y: 0,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: "power3.out",
-          overwrite: "auto"
-        }),
-        onLeaveBack: batch => gsap.to(batch, {
-          opacity: 0,
-          y: 40,
-          overwrite: "auto"
-        })
-      });
-
-      ScrollTrigger.refresh();
+        ScrollTrigger.refresh();
+      }, gridRef);
     }, 300);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (ctx) ctx.revert();
+    };
   }, [filterCategory]);
 
   // Framer Motion filter transition variants

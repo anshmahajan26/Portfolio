@@ -38,16 +38,16 @@ export default function Skills() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    const anim = gsap.to(marqueeRef.current, {
-      xPercent: -50,
-      duration: 25,
-      ease: 'none',
-      repeat: -1
-    });
+    const ctx = gsap.context(() => {
+      gsap.to(marqueeRef.current, {
+        xPercent: -50,
+        duration: 25,
+        ease: 'none',
+        repeat: -1
+      });
+    }, marqueeRef);
 
-    return () => {
-      anim.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   // GSAP Proficiency Bars scroll trigger animation
@@ -55,29 +55,35 @@ export default function Skills() {
     if (viewMode === 'bars') {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
-      barRefs.current.forEach((bar) => {
-        if (!bar) return;
-        const targetWidth = bar.getAttribute('data-width');
-        
-        if (prefersReduced) {
-          bar.style.width = targetWidth;
-          return;
-        }
+      if (prefersReduced) {
+        barRefs.current.forEach((bar) => {
+          if (bar) bar.style.width = bar.getAttribute('data-width');
+        });
+        return;
+      }
 
-        gsap.fromTo(bar,
-          { width: '0%' },
-          {
-            width: targetWidth,
-            duration: 1.2,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: bar,
-              start: 'top 95%',
-              toggleActions: 'play none none none'
+      const ctx = gsap.context(() => {
+        barRefs.current.forEach((bar) => {
+          if (!bar) return;
+          const targetWidth = bar.getAttribute('data-width');
+
+          gsap.fromTo(bar,
+            { width: '0%' },
+            {
+              width: targetWidth,
+              duration: 1.2,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: bar,
+                start: 'top 95%',
+                toggleActions: 'play none none none'
+              }
             }
-          }
-        );
+          );
+        });
       });
+
+      return () => ctx.revert();
     }
   }, [viewMode]);
 
