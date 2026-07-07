@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
 import { initLenis } from './motion';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
 
 function App() {
@@ -23,10 +24,23 @@ function App() {
       window.lenis = lenis;
     }
 
+    const handleLoad = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('load', handleLoad);
+
+    // Dynamic fallback trigger to ensure layouts are stable
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1500);
+
     return () => {
       if (lenis) {
         lenis.destroy();
       }
+      window.removeEventListener('load', handleLoad);
+      clearTimeout(timer);
     };
   }, []);
 

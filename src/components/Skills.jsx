@@ -162,7 +162,8 @@ export default function Skills() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            exit="hidden"
+            viewport={{ once: false, amount: 0.4, margin: "0px 0px -10% 0px" }}
           >
             {skillsData.map((skill) => (
               <motion.div 

@@ -20,7 +20,7 @@ export const isReducedMotion = () => {
 // Configure GSAP defaults
 if (!isReducedMotion()) {
   ScrollTrigger.defaults({
-    toggleActions: "play none none reverse",
+    toggleActions: "play reverse play reverse",
     start: "top 80%",
     end: "bottom 20%",
   });
@@ -45,12 +45,11 @@ export const initLenis = () => {
     smoothWheel: true 
   });
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
+  // Sync Lenis with GSAP ScrollTrigger & Ticker
+  lenis.on('scroll', ScrollTrigger.update);
+  
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
   
   return lenis;
 };

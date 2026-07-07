@@ -47,7 +47,8 @@ export default function Footer() {
         variants={footerRevealVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        exit="hidden"
+        viewport={{ once: false, amount: 0.4, margin: "0px 0px -10% 0px" }}
       >
         
         {/* Footer 3-column layout */}

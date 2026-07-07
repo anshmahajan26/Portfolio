@@ -155,7 +155,8 @@ export default function Timeline() {
                   variants={getCardVariants(item.side)}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: false, amount: 0.3 }}
+                  exit="hidden"
+                  viewport={{ once: false, amount: 0.4, margin: "0px 0px -10% 0px" }}
                 >
                   <div className="timeline-card-header">
                     <span className="timeline-date">{item.date}</span>
