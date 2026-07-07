@@ -76,7 +76,7 @@ export default function Hero({ isLoaded = true }) {
   const dotRef = useRef(null);
 
   // Typewriter Role Rotator State
-  const roles = ["Full-Stack MERN Developer", "React Developer", "AI & DS Student"];
+  const roles = ["Full-Stack MERN Developer", "React Developer", "AI & DS Graduate"];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -171,7 +171,7 @@ export default function Hero({ isLoaded = true }) {
   }, [isLoaded]);
 
   // Framer Motion headline reveal animation
-  const title = "Forging Next-Gen Digital Interfaces";
+  const title = "Building Intelligent Web Applications";
   const words = title.split(" ");
 
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -261,7 +261,7 @@ export default function Hero({ isLoaded = true }) {
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
         >
-          Interactive Portfolio
+          Full-Stack & AI Developer
         </motion.span>
 
         {/* Clip-reveal Headline */}
@@ -302,7 +302,7 @@ export default function Hero({ isLoaded = true }) {
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
         >
-          A passionate software creator specializing in robust architectures, interactive digital experiences, and neat user interfaces.
+          Full-stack MERN developer building production-ready web apps with secure JWT authentication, Razorpay payments, and ML integrations. Skilled in leveraging GenAI tools to accelerate system design and deployment.
         </motion.p>
 
         {/* CTA Buttons */}

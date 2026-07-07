@@ -179,7 +179,7 @@ export default function About() {
           {/* Paragraphs: Slide in from Right */}
           <div ref={descParagraphsRef}>
             <p className="about-description about-description-para">
-              I am a dedicated Artificial Intelligence & Data Science student and a passionate software developer. My approach combines robust engineering architecture with smooth visual polish to create memorable digital interactions.
+              I am a dedicated Artificial Intelligence & Data Science graduate and a passionate software developer. My approach combines robust engineering architecture with smooth visual polish to create memorable digital interactions.
             </p>
             <p className="about-description about-description-para">
               Whether designing high-throughput database pipelines or refining user interfaces, I prioritize writing clean, maintainable, and modular code. I thrive on solving complex backend problems and translating them into elegant frontend solutions.
