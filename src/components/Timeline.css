@@ -49,10 +49,34 @@
   }
 }
 
+/* Progress Dot that moves along the timeline line as user scrolls */
+.timeline-progress-dot {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px var(--accent-1);
+  z-index: 2;
+  transform-origin: center;
+}
+
+@media (min-width: 768px) {
+  .timeline-progress-dot {
+    left: 50%;
+  }
+}
+
 /* Default Fallback for scaleY when prefers-reduced-motion is active */
 @media (prefers-reduced-motion: reduce) {
   .timeline-line {
     transform: none !important;
+  }
+  .timeline-progress-dot {
+    display: none !important;
   }
 }
 

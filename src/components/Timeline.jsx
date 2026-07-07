@@ -48,18 +48,41 @@ const timelineData = [
 
 export default function Timeline() {
   const lineRef = useRef(null);
+  const progressDotRef = useRef(null);
   const timelineRef = useRef(null);
 
-  // GSAP ScrollTrigger for vertical timeline line drawing
+  // GSAP ScrollTrigger for vertical timeline line drawing & moving progress dot
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
     const ctx = gsap.context(() => {
+      // 1. Draw line
       gsap.fromTo(lineRef.current,
         { scaleY: 0 },
         {
           scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: 'top 70%',
+            end: 'bottom 80%',
+            scrub: 0.5
+          }
+        }
+      );
+
+      // 2. Animate progress dot along the line
+      gsap.fromTo(progressDotRef.current,
+        { 
+          y: 0,
+          xPercent: -50,
+          yPercent: -50
+        },
+        {
+          y: () => timelineRef.current.offsetHeight,
+          xPercent: -50,
+          yPercent: -50,
           ease: 'none',
           scrollTrigger: {
             trigger: timelineRef.current,
@@ -111,6 +134,9 @@ export default function Timeline() {
           {/* Drawing Vertical Line */}
           <div ref={lineRef} className="timeline-line" />
 
+          {/* Moving progress dot on scroll */}
+          <div ref={progressDotRef} className="timeline-progress-dot" />
+
           {/* Timeline Items */}
           {timelineData.map((item) => {
             const isLeft = item.side === 'left';
@@ -129,7 +155,7 @@ export default function Timeline() {
                   variants={getCardVariants(item.side)}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
+                  viewport={{ once: false, amount: 0.3 }}
                 >
                   <div className="timeline-card-header">
                     <span className="timeline-date">{item.date}</span>
