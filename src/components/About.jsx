@@ -96,7 +96,7 @@ export default function About() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 75%', // Starts when About section is 75% from the top of viewport
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none reverse'
         }
       });
 
@@ -140,26 +140,26 @@ export default function About() {
   return (
     <section ref={sectionRef} id="about" className="about-section">
       <div className="about-container container">
-        
+
         {/* Left Column: Portrait image with 3D hover tilt */}
         <div ref={imageColumnRef} className="about-image-column">
           <motion.div
             className="about-image-frame glassmorphism"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            style={{ 
-              rotateX, 
-              rotateY, 
-              transformStyle: 'preserve-3d', 
-              perspective: 1000 
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: 'preserve-3d',
+              perspective: 1000
             }}
             whileHover={{ scale: 1.03 }}
           >
             <div className="about-image-wrapper">
-              <img 
-                src={portraitImg} 
-                className="about-portrait" 
-                alt="Developer Portrait" 
+              <img
+                src={portraitImg}
+                className="about-portrait"
+                alt="Developer Portrait"
                 loading="lazy"
               />
             </div>
@@ -189,8 +189,8 @@ export default function About() {
           {/* Stat Cards Container: Stagger up from Bottom */}
           <div ref={statsGridRef} className="about-stats-grid">
             {stats.map((stat, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 className="stat-card glassmorphism"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >

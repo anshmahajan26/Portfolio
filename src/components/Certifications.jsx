@@ -6,45 +6,38 @@ import './Certifications.css';
 const certsData = [
   {
     id: 1,
-    title: "AWS Certified Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    date: "Dec 2024",
-    credentialId: "AWS-CCP-987"
+    title: "Full Stack Web Development",
+    issuer: "Apna College",
+    date: "2024",
+    credentialId: "APNA-FSWD-101"
   },
   {
     id: 2,
-    title: "Oracle Certified Professional",
-    issuer: "Oracle",
-    date: "Aug 2024",
-    credentialId: "OCP-JP-654"
+    title: "SQL (Certified)",
+    issuer: "HackerRank",
+    date: "2024",
+    credentialId: "HR-SQL-CERT"
   },
   {
     id: 3,
-    title: "Advanced Data Analytics",
-    issuer: "Google",
-    date: "Jun 2024",
-    credentialId: "G-ADA-321"
+    title: "JavaScript (Intermediate)",
+    issuer: "HackerRank",
+    date: "2024",
+    credentialId: "HR-JS-INTER"
   },
   {
     id: 4,
-    title: "Deep Learning Specialization",
-    issuer: "DeepLearning.AI",
-    date: "Mar 2024",
-    credentialId: "DL-SPEC-112"
+    title: "Building with the Claude API",
+    issuer: "Anthropic",
+    date: "2025",
+    credentialId: "ANTH-CLAUDE-API"
   },
   {
     id: 5,
-    title: "Front-End Professional Certificate",
-    issuer: "Meta",
-    date: "Jan 2024",
-    credentialId: "META-FE-556"
-  },
-  {
-    id: 6,
-    title: "PostgreSQL Database Admin",
-    issuer: "Udemy Professional",
-    date: "Nov 2023",
-    credentialId: "UDEMY-PG-889"
+    title: "Claude Code in Action",
+    issuer: "Anthropic",
+    date: "2025",
+    credentialId: "ANTH-CLAUDE-CODE"
   }
 ];
 

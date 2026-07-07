@@ -11,38 +11,47 @@ const timelineData = [
   {
     id: 1,
     type: "experience",
-    date: "2024 - Present",
-    title: "Software Engineer Intern",
-    company: "Hexa Systems Inc.",
-    description: "Developing responsive frontend interfaces using React.js and engineering Spring Boot backend microservices. Refactored database indexes to reduce read latencies by 30%.",
+    date: "Apr 2025 – Oct 2025",
+    title: "React Developer Intern",
+    company: "JP Technology",
+    description: "Built responsive React.js UI components with Tailwind CSS and integrated backend REST APIs. Optimized frontend performance with debouncing and throttling for search and high-frequency UI events to minimize renders. Leveraged GitHub Copilot and ChatGPT for boilerplate acceleration, manually validating and integrating the code.",
     side: "left"
   },
   {
     id: 2,
-    type: "education",
-    date: "2023 - 2025 (Expected)",
-    title: "M.Sc. Artificial Intelligence & Data Science",
-    company: "Apex Tech University",
-    description: "Deep dive into artificial neural networks, deep learning systems, predictive algorithms, and statistical analysis models.",
+    type: "experience",
+    date: "Dec 2024 – Jan 2025",
+    title: "Web Development Intern",
+    company: "NewAI Lab",
+    description: "Developed a web-based Expense Tracker application. Prompted ChatGPT to draft edge-case test scenarios for calculation logic, and manually validated and extended them to resolve rounding and negative-value bugs. Integrated frontend modules with backend APIs for database storage.",
     side: "right"
   },
   {
     id: 3,
-    type: "experience",
-    date: "2021 - 2023",
-    title: "Junior Data Analyst",
-    company: "DataMetrics Solutions",
-    description: "Constructed Python pipelines for database extraction, compiled monthly reports with Seaborn, and designed automated ETL procedures.",
+    type: "education",
+    date: "2022 – 2026",
+    title: "B.E. in Artificial Intelligence & Data Science",
+    company: "G.S.M. College of Engineering, Pune (SPPU)",
+    description: "Maintained a strong CGPA of 9.50. Focus on deep neural networks, machine learning algorithms, database management, and building intelligent web systems.",
     side: "left"
   },
   {
     id: 4,
     type: "education",
-    date: "2018 - 2021",
-    title: "B.Sc. Computer Science",
-    company: "State Science Institute",
-    description: "Acquired core engineering foundations: Java OOP, database design, computer networks, and advanced data structures.",
+    date: "2021 – 2022",
+    title: "Higher Secondary Certificate (Class 12)",
+    company: "Nutan Vidyalaya Malkapur",
+    description: "Completed higher secondary education with a final score of 89.83%.",
     side: "right"
+  },
+  {
+    id: 5,
+    type: "education",
+    date: "2019 – 2020",
+    title: "Secondary School Certificate (Class 10)",
+    company: "D.E.S Highschool Datala",
+    description: "Graduated secondary school with a final score of 96.40%.",
+    side: "left"
   }
 ];
 

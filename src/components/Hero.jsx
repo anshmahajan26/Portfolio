@@ -76,7 +76,7 @@ export default function Hero({ isLoaded = true }) {
   const dotRef = useRef(null);
 
   // Typewriter Role Rotator State
-  const roles = ["Java Full-Stack Developer", "Data Analyst", "AI & DS Student"];
+  const roles = ["Full-Stack MERN Developer", "React Developer", "AI & DS Student"];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -317,6 +317,9 @@ export default function Hero({ isLoaded = true }) {
           </MagneticButton>
           <MagneticButton href="#contact" className="hero-btn secondary-btn glassmorphism">
             <span>Let's Talk</span>
+          </MagneticButton>
+          <MagneticButton href="/Ansh_Mahajan_Resume.pdf" className="hero-btn secondary-btn glassmorphism" download="Ansh_Mahajan_Resume.pdf">
+            <span>Resume</span>
           </MagneticButton>
         </motion.div>
       </div>

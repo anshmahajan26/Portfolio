@@ -18,17 +18,16 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-const TwitterIcon = () => (
-  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+const LeetcodeIcon = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <path d="M16.102 17.93l-2.69 2.607c-.466.451-1.211.451-1.677 0l-4.51-4.37c-.467-.453-.467-1.188 0-1.64l8.877-8.61c.466-.452 1.212-.452 1.678 0 .466.452.466 1.188 0 1.641l-8.038 7.79 3.325 3.22 3.035-2.937c.346-.334.908-.334 1.254 0 .346.335.346.878 0 1.213l-3.254 3.15c-.173.167-.402.25-.631.25-.229 0-.458-.083-.631-.25l-2.062-2-3.325-3.22 8.038-7.79c.173-.168.454-.168.627 0 .173.168.173.442 0 .61L16.102 17.93zM5.787 5.856c-.346-.335-.908-.335-1.254 0l-3.254 3.15a.812.812 0 0 0 0 1.213l4.51 4.37c.346.335.908.335 1.254 0a.885.885 0 0 0 0-1.213l-3.883-3.764 2.627-2.543a.885.885 0 0 0 0-1.213z" />
   </svg>
 );
 
-const DiscordIcon = () => (
+const MailIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 6h-1.6c-.7 0-1.4.3-1.8.8l-1.4 1.8h-2.4l-1.4-1.8c-.4-.5-1.1-.8-1.8-.8H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h2c.8 0 1.5-.5 1.8-1.2L11 16h2l1.2 2.8c.3.7 1 1.2 1.8 1.2h2c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z" />
-    <circle cx="9" cy="11" r="1.5" fill="currentColor" />
-    <circle cx="15" cy="11" r="1.5" fill="currentColor" />
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
   </svg>
 );
 
@@ -83,7 +82,7 @@ export default function Contact() {
             {/* Social Icons 44px circles */}
             <div className="contact-social-icons">
               <motion.a
-                href="https://github.com"
+                href="https://github.com/anshmahajan26"
                 target="_blank"
                 rel="noreferrer"
                 className="social-icon-btn neumorphic"
@@ -94,7 +93,7 @@ export default function Contact() {
                 <GithubIcon />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/ansh-mahajan26052004b"
                 target="_blank"
                 rel="noreferrer"
                 className="social-icon-btn neumorphic"
@@ -105,26 +104,26 @@ export default function Contact() {
                 <LinkedinIcon />
               </motion.a>
               <motion.a
-                href="https://twitter.com"
+                href="https://leetcode.com/u/anshmahajan345/"
                 target="_blank"
                 rel="noreferrer"
                 className="social-icon-btn neumorphic"
                 whileHover={{ rotate: 12, scale: 1.1 }}
                 transition={socialSpring}
-                aria-label="Twitter Profile"
+                aria-label="LeetCode Profile"
               >
-                <TwitterIcon />
+                <LeetcodeIcon />
               </motion.a>
               <motion.a
-                href="https://discord.com"
+                href="mailto:anshmahajan345@gmail.com"
                 target="_blank"
                 rel="noreferrer"
                 className="social-icon-btn neumorphic"
                 whileHover={{ rotate: 12, scale: 1.1 }}
                 transition={socialSpring}
-                aria-label="Discord Server Link"
+                aria-label="Email Address"
               >
-                <DiscordIcon />
+                <MailIcon />
               </motion.a>
             </div>
           </div>

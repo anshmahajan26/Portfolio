@@ -9,18 +9,18 @@ import { STAGGER } from '../motion';
 import './Skills.css';
 
 const skillsData = [
-  { name: 'Java', icon: Coffee, level: '90%', category: 'Languages' },
-  { name: 'React', icon: Code, level: '85%', category: 'Frontend' },
-  { name: 'AI & ML', icon: Cpu, level: '75%', category: 'Data & AI' },
-  { name: 'Databases', icon: Database, level: '80%', category: 'Backend' },
-  { name: 'Cloud Computing', icon: Cloud, level: '70%', category: 'DevOps' },
+  { name: 'React.js', icon: Code, level: '95%', category: 'Frontend' },
+  { name: 'Node.js', icon: Terminal, level: '90%', category: 'Backend' },
+  { name: 'MongoDB', icon: Database, level: '85%', category: 'Databases' },
+  { name: 'Python', icon: Cpu, level: '80%', category: 'Languages' },
+  { name: 'Java', icon: Coffee, level: '75%', category: 'Languages' },
+  { name: 'Tailwind CSS', icon: Globe, level: '90%', category: 'Frontend' },
+  { name: 'Express.js', icon: Grid, level: '85%', category: 'Backend' },
+  { name: 'FastAPI', icon: Layers, level: '75%', category: 'Backend' },
+  { name: 'XGBoost', icon: Cpu, level: '70%', category: 'ML & Data' },
+  { name: 'Gemini API', icon: Shield, level: '85%', category: 'GenAI' },
   { name: 'Git & GitHub', icon: GitBranch, level: '90%', category: 'Tools' },
-  { name: 'Shell Script', icon: Terminal, level: '80%', category: 'Systems' },
-  { name: 'Security', icon: Shield, level: '75%', category: 'Security' },
-  { name: 'REST APIs', icon: Layers, level: '85%', category: 'Architecture' },
-  { name: 'Data Structures', icon: HardDrive, level: '85%', category: 'Core CS' },
-  { name: 'Mobile Apps', icon: Smartphone, level: '70%', category: 'Mobile' },
-  { name: 'Web Dev', icon: Globe, level: '90%', category: 'Frontend' }
+  { name: 'REST APIs', icon: Layers, level: '85%', category: 'Backend' }
 ];
 
 export default function Skills() {

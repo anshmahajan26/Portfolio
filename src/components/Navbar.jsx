@@ -85,7 +85,9 @@ export default function Navbar() {
         <div className="navbar-container container">
           {/* Logo / Initials */}
           <a href="#home" className="logo" onClick={() => setActiveLink('Home')}>
-            <span className="logo-gradient">AG</span>
+            <span className="logo-tech-tag">&lt;</span>
+            <span className="logo-gradient">AM</span>
+            <span className="logo-tech-tag">&nbsp;/&gt;</span>
           </a>
 
           {/* Nav Links (Desktop) */}
@@ -163,7 +165,11 @@ export default function Navbar() {
               transition={{ duration: DURATION.base, ease: EASE_STANDARD }}
             >
               <div className="drawer-header">
-                <span className="logo-gradient">AG</span>
+                <div className="logo">
+                  <span className="logo-tech-tag">&lt;</span>
+                  <span className="logo-gradient">AM</span>
+                  <span className="logo-tech-tag">&nbsp;/&gt;</span>
+                </div>
                 <button className="close-btn" onClick={() => setIsOpen(false)} aria-label="Close Menu">
                   <X size={24} />
                 </button>

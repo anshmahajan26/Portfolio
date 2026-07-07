@@ -32,6 +32,28 @@ gsap.registerPlugin(ScrollTrigger);
 const projectsData = [
   {
     id: 1,
+    title: "CementPro",
+    category: "Data & AI",
+    image: dataImg,
+    tags: ["React", "FastAPI", "XGBoost", "MongoDB", "Gemini API"],
+    description: "An ML-driven ready-mix concrete demand forecasting and procurement platform adjusting for Open-Meteo weather.",
+    extendedDesc: "Solves ready-mix concrete's short shelf-life issues (costly over/under-ordering) by predicting next-day demand with an XGBoost/Random Forest ML pipeline. Features a procurement engine converting volume to tonnage, Gemini API querying, JWT role access control, and ExcelJS/PDFKit exports.",
+    live: "#",
+    github: "#"
+  },
+  {
+    id: 2,
+    title: "HostHive",
+    category: "Full-Stack",
+    image: dashboardImg,
+    tags: ["React", "Node.js", "Express", "MongoDB"],
+    description: "A property listing and booking platform featuring full CRUD, double-booking validation, and MongoDB Atlas.",
+    extendedDesc: "A complete rental property management solution. Accelerated development using AI tools, manually implementing transaction safety check procedures, date conflict checks, secure authentication, and complex Mongo queries.",
+    live: "#",
+    github: "#"
+  },
+  {
+    id: 3,
     title: "Enterprise Admin Panel",
     category: "Full-Stack",
     image: dashboardImg,
@@ -42,7 +64,7 @@ const projectsData = [
     github: "#"
   },
   {
-    id: 2,
+    id: 4,
     title: "AI Predictive Analytics Suite",
     category: "Data & AI",
     image: dataImg,
@@ -53,7 +75,7 @@ const projectsData = [
     github: "#"
   },
   {
-    id: 3,
+    id: 5,
     title: "Neural Graph Explorer",
     category: "AI & ML",
     image: neuralImg,

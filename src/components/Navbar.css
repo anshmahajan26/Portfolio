@@ -54,6 +54,19 @@
   letter-spacing: -0.03em;
 }
 
+.logo-tech-tag {
+  color: var(--text-muted);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  opacity: 0.6;
+  transition: opacity 0.25s var(--ease-standard), color 0.25s var(--ease-standard);
+}
+
+.logo:hover .logo-tech-tag {
+  color: var(--accent-1);
+  opacity: 1;
+}
+
 /* Desktop nav items */
 .nav-links-desktop {
   display: none;

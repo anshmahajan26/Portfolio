@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="footer-grid">
           {/* Brand/Logo */}
           <div className="footer-col brand-col">
-            <span className="footer-brand">AG</span>
+            <span className="footer-brand">AM</span>
             <p className="footer-tagline">Crafting secure architectures & interactive designs.</p>
           </div>
 
@@ -74,7 +74,7 @@ export default function Footer() {
           <div className="footer-col copyright-col">
             <h4 className="footer-subheading">Availability</h4>
             <p className="footer-status">Currently open to junior roles and software engineering opportunities.</p>
-            <span className="footer-copy">© {new Date().getFullYear()} Antigravity. All rights reserved.</span>
+            <span className="footer-copy">© {new Date().getFullYear()} Ansh Mahajan. All rights reserved.</span>
           </div>
         </div>
 
