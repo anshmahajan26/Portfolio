@@ -67,7 +67,7 @@ const projectsData = [
 
 const categories = ["All", "Full-Stack", "Data & AI", "AI & ML"];
 
-export default function Projects() {
+export default function Projects({ isLoaded = true }) {
   const [filterCategory, setFilterCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
   const gridRef = useRef(null);
@@ -78,6 +78,8 @@ export default function Projects() {
 
   // GSAP ScrollTrigger.batch() for scroll reveals
   useEffect(() => {
+    if (!isLoaded) return;
+
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
@@ -94,6 +96,8 @@ export default function Projects() {
         // Create new batch reveal
         ScrollTrigger.batch(cards, {
           interval: 0.1,
+          start: "top 95%",
+          end: "bottom 5%",
           onEnter: batch => gsap.to(batch, {
             opacity: 1,
             y: 0,
@@ -130,7 +134,7 @@ export default function Projects() {
       clearTimeout(timer);
       if (ctx) ctx.revert();
     };
-  }, [filterCategory]);
+  }, [filterCategory, isLoaded]);
 
   // Framer Motion filter transition variants
   const gridVariants = {

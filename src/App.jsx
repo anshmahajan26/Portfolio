@@ -66,7 +66,7 @@ function App() {
         
         <About />
         <Skills />
-        <Projects />
+        <Projects isLoaded={isLoaded} />
         <Timeline />
         <Certifications />
         <Contact />
