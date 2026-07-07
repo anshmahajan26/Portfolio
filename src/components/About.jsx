@@ -53,8 +53,8 @@ export default function About() {
   const statsGridRef = useRef(null);
 
   const stats = [
-    { value: 3, suffix: "+", label: "Years Experience" },
-    { value: 40, suffix: "+", label: "Projects Completed" },
+    { value: 1, suffix: "+", label: "Years Experience" },
+    { value: 15, suffix: "+", label: "Projects Completed" },
     { value: 15, suffix: "+", label: "OSS Contributions" },
     { value: 99, suffix: "%", label: "Success Rate" }
   ];
