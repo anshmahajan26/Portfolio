@@ -1,0 +1,138 @@
+.footer-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-elevated);
+  overflow: hidden;
+  z-index: 10;
+  border-top: 1px solid var(--border-glass);
+}
+
+.footer-container {
+  padding-block: 48px;
+}
+
+/* 3-Column Footer Layout */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    text-align: left;
+    gap: 48px;
+  }
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Brand col */
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  align-self: center;
+}
+
+@media (min-width: 768px) {
+  .footer-brand {
+    align-self: flex-start;
+  }
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 260px;
+  align-self: center;
+}
+
+@media (min-width: 768px) {
+  .footer-tagline {
+    align-self: flex-start;
+  }
+}
+
+/* Quick links */
+.footer-subheading {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .footer-links {
+    align-items: flex-start;
+  }
+}
+
+.footer-links a {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s var(--ease-standard);
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+}
+
+/* Copyright & Availability */
+.footer-status {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Back-to-top Floating Button: 48px circle, glass, fixed bottom 32px right 32px */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 49;
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  background: var(--bg-glass);
+}
+
+.arrow-spin-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+}

@@ -166,14 +166,17 @@
 @media (prefers-reduced-motion: reduce) {
   .carousel-container {
     cursor: default;
-    overflow-x: auto; /* standard scrolling fallback */
+    overflow-x: auto;
+    /* standard scrolling fallback */
   }
+
   .carousel-track {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
   }
+
   .carousel-hint {
     display: none;
   }

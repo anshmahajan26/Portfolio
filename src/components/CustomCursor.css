@@ -1,0 +1,59 @@
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0);
+  transition: opacity 0.3s ease;
+}
+
+/* 8px solid dot (instant follow) */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-1);
+}
+
+/* 36px outlined ring (lagged follow) */
+.custom-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--accent-2);
+  transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Visible class activated on first mouse movement */
+.custom-cursor-dot.visible,
+.custom-cursor-ring.visible {
+  opacity: 1;
+}
+
+/* Hover state on interactive elements: ring scales 1.8x, mix-blend-mode difference */
+.custom-cursor-ring.hovered {
+  width: 54px;
+  height: 54px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  mix-blend-mode: difference;
+  transform: translate3d(-27px, -27px, 0); /* adjustment offset for larger size */
+}
+
+/* Hide on touch devices (where hover is not supported) */
+@media (hover: none) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Hide when prefers-reduced-motion is active */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}

@@ -67,7 +67,7 @@ function MagneticButton({ children, className, href }) {
   );
 }
 
-export default function Hero() {
+export default function Hero({ isLoaded = true }) {
   const heroRef = useRef(null);
   const backgroundRef = useRef(null);
   const blobAmberRef = useRef(null);
@@ -83,6 +83,8 @@ export default function Hero() {
 
   // Typewriter Effect
   useEffect(() => {
+    if (!isLoaded) return;
+
     let timer;
     const currentRole = roles[currentRoleIndex];
 
@@ -110,66 +112,63 @@ export default function Hero() {
     }
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentRoleIndex]);
+  }, [currentText, isDeleting, currentRoleIndex, isLoaded]);
 
   // GSAP Background Animations and Pin/Scale/Fade effects
   useEffect(() => {
+    if (!isLoaded) return;
+
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    // Continuous blob drifting
-    const animateBlob = (el, xVal, yVal, dur) => {
-      return gsap.to(el, {
-        xPercent: xVal,
-        yPercent: yVal,
-        duration: dur,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
+    const ctx = gsap.context(() => {
+      // Continuous blob drifting
+      const animateBlob = (el, xVal, yVal, dur) => {
+        return gsap.to(el, {
+          xPercent: xVal,
+          yPercent: yVal,
+          duration: dur,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+        });
+      };
+
+      animateBlob(blobAmberRef.current, 15, -15, 14);
+      animateBlob(blobRoseRef.current, -15, 15, 16);
+      animateBlob(blobGraphiteRef.current, 10, 12, 12);
+
+      // Scrollcue traveling dot animation
+      const cueAnim = gsap.timeline({ repeat: -1 });
+      cueAnim.fromTo(dotRef.current,
+        { y: 0, opacity: 0 },
+        { opacity: 1, duration: 0.3 }
+      ).to(dotRef.current,
+        { y: 35, ease: 'power1.inOut', duration: 1.0 }
+      ).to(dotRef.current,
+        { opacity: 0, duration: 0.3 }
+      );
+
+      // Hero ScrollTrigger Pin & Background Scale/Fade animation
+      const pinTrigger = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: '+=100%',
+          pin: true,
+          scrub: 1,
+        }
       });
-    };
 
-    const animAmber = animateBlob(blobAmberRef.current, 15, -15, 14);
-    const animRose = animateBlob(blobRoseRef.current, -15, 15, 16);
-    const animGraphite = animateBlob(blobGraphiteRef.current, 10, 12, 12);
+      pinTrigger.to(backgroundRef.current, {
+        scale: 1.15,
+        opacity: 0,
+        ease: 'none'
+      });
+    }, heroRef);
 
-    // Scrollcue traveling dot animation
-    const cueAnim = gsap.timeline({ repeat: -1 });
-    cueAnim.fromTo(dotRef.current,
-      { y: 0, opacity: 0 },
-      { opacity: 1, duration: 0.3 }
-    ).to(dotRef.current,
-      { y: 35, ease: 'power1.inOut', duration: 1.0 }
-    ).to(dotRef.current,
-      { opacity: 0, duration: 0.3 }
-    );
-
-    // Hero ScrollTrigger Pin & Background Scale/Fade animation
-    const pinTrigger = gsap.timeline({
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: '+=100%',
-        pin: true,
-        scrub: 1,
-      }
-    });
-
-    pinTrigger.to(backgroundRef.current, {
-      scale: 1.15,
-      opacity: 0,
-      ease: 'none'
-    });
-
-    return () => {
-      animAmber.kill();
-      animRose.kill();
-      animGraphite.kill();
-      cueAnim.kill();
-      if (pinTrigger.scrollTrigger) pinTrigger.scrollTrigger.kill();
-      pinTrigger.kill();
-    };
-  }, []);
+    return () => ctx.revert();
+  }, [isLoaded]);
 
   // Framer Motion headline reveal animation
   const title = "Forging Next-Gen Digital Interfaces";
@@ -260,7 +259,7 @@ export default function Hero() {
           className="section-label hero-caption"
           variants={captionVariants}
           initial="hidden"
-          animate="visible"
+          animate={isLoaded ? "visible" : "hidden"}
         >
           Interactive Portfolio
         </motion.span>
@@ -270,7 +269,7 @@ export default function Hero() {
           className="hero-title"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={isLoaded ? "visible" : "hidden"}
         >
           {words.map((word, i) => (
             <span key={i} className="hero-word-wrapper">
@@ -287,7 +286,7 @@ export default function Hero() {
           className="role-rotator"
           variants={rotatorVariants}
           initial="hidden"
-          animate="visible"
+          animate={isLoaded ? "visible" : "hidden"}
         >
           <span className="role-prefix">I am an&nbsp;</span>
           <span className="role-text-gradient">
@@ -301,7 +300,7 @@ export default function Hero() {
           className="hero-description"
           variants={descVariants}
           initial="hidden"
-          animate="visible"
+          animate={isLoaded ? "visible" : "hidden"}
         >
           A passionate software creator specializing in robust architectures, interactive digital experiences, and neat user interfaces.
         </motion.p>
@@ -311,7 +310,7 @@ export default function Hero() {
           className="hero-actions"
           variants={actionsVariants}
           initial="hidden"
-          animate="visible"
+          animate={isLoaded ? "visible" : "hidden"}
         >
           <MagneticButton href="#projects" className="hero-btn primary-btn">
             <span>Explore Work</span>
@@ -329,7 +328,7 @@ export default function Hero() {
         aria-label="Scroll Down"
         variants={cueVariants}
         initial="hidden"
-        animate="visible"
+        animate={isLoaded ? "visible" : "hidden"}
       >
         <span className="scroll-cue-text">Scroll Down</span>
         <div className="scroll-line">

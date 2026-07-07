@@ -1,0 +1,251 @@
+.contact-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-base);
+  overflow: hidden;
+  z-index: 2;
+  border-top: 1px solid var(--border-glass);
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-header {
+  text-align: left;
+}
+
+.contact-title {
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+/* Contact Grid Layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 64px;
+  }
+}
+
+/* Social column styling */
+.contact-social-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.contact-subheading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.contact-desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.contact-social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: var(--neu-bg);
+  box-sizing: border-box;
+}
+
+.social-icon-btn:hover {
+  color: var(--accent-1);
+}
+
+/* Form container - centered, max-width 560px, glass-strong, padding 40px */
+.contact-form-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 560px;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Floating Input Group */
+.input-group {
+  position: relative;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+  border: none;
+  border-bottom: 2px solid var(--border-glass);
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.input-group label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-standard), color 0.25s var(--ease-standard);
+  transform-origin: left top;
+}
+
+/* Float label translateY: 0 → -24px, scale: 1 → 0.85 on focus/filled */
+.input-group.filled label,
+.input-group input:focus ~ label,
+.input-group textarea:focus ~ label {
+  transform: translateY(-24px) scale(0.85);
+  color: var(--accent-1);
+}
+
+.input-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease-standard);
+}
+
+.input-group input:focus ~ .input-bar,
+.input-group textarea:focus ~ .input-bar {
+  transform: scaleX(1);
+}
+
+/* Submit Morphing Button */
+.submit-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  position: relative;
+  margin-top: 24px;
+}
+
+.submit-btn {
+  height: 52px;
+  width: 100%;
+  border-radius: 14px;
+  background: var(--accent-gradient);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.4s var(--ease-standard), border-radius 0.4s var(--ease-standard), background-color 0.4s var(--ease-standard);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(245, 165, 36, 0.25);
+  user-select: none;
+}
+
+.submit-btn:hover:not(:disabled) {
+  opacity: 0.95;
+}
+
+.submit-btn.submitting {
+  width: 52px;
+  border-radius: 50%;
+  cursor: wait;
+}
+
+.submit-btn.success {
+  width: 52px;
+  border-radius: 50%;
+  background: #10B981 !important; /* Green success indicator override */
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+}
+
+/* Spinner inside button */
+.btn-spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: btn-spin 0.8s linear infinite;
+  position: absolute;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success checkmark drawing */
+.success-checkmark {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw-checkmark 0.5s ease-out 0.2s forwards;
+}
+
+@keyframes draw-checkmark {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Reduced motion fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  .submit-btn {
+    transition: none !important;
+  }
+  .submit-btn.submitting,
+  .submit-btn.success {
+    width: 100% !important;
+    border-radius: 14px !important;
+  }
+  .success-checkmark {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}

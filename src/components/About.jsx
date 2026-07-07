@@ -91,51 +91,50 @@ export default function About() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 75%', // Starts when About section is 75% from the top of viewport
-        toggleActions: 'play none none none'
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%', // Starts when About section is 75% from the top of viewport
+          toggleActions: 'play none none none'
+        }
+      });
+
+      // 1. Image column slides in from left
+      tl.fromTo(imageColumnRef.current,
+        { x: -120, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+      );
+
+      // 2. Heading slides in from top
+      tl.fromTo(headingRef.current,
+        { y: -60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+        '-=0.6'
+      );
+
+      // 3. Paragraphs slide in from right
+      const paragraphs = descParagraphsRef.current ? descParagraphsRef.current.querySelectorAll('.about-description-para') : [];
+      if (paragraphs.length > 0) {
+        tl.fromTo(paragraphs,
+          { x: 120, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.15 },
+          '-=0.4'
+        );
       }
-    });
 
-    // 1. Image column slides in from left
-    tl.fromTo(imageColumnRef.current,
-      { x: -120, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
-    );
+      // 4. Stats cards slide up from bottom
+      const cards = statsGridRef.current ? statsGridRef.current.querySelectorAll('.stat-card') : [];
+      if (cards.length > 0) {
+        tl.fromTo(cards,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.1 },
+          '-=0.4'
+        );
+      }
+    }, sectionRef);
 
-    // 2. Heading slides in from top
-    tl.fromTo(headingRef.current,
-      { y: -60, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
-      '-=0.6'
-    );
-
-    // 3. Paragraphs slide in from right
-    const paragraphs = descParagraphsRef.current ? descParagraphsRef.current.querySelectorAll('.about-description-para') : [];
-    if (paragraphs.length > 0) {
-      tl.fromTo(paragraphs,
-        { x: 120, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.15 },
-        '-=0.4'
-      );
-    }
-
-    // 4. Stats cards slide up from bottom
-    const cards = statsGridRef.current ? statsGridRef.current.querySelectorAll('.stat-card') : [];
-    if (cards.length > 0) {
-      tl.fromTo(cards,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.1 },
-        '-=0.4'
-      );
-    }
-
-    return () => {
-      if (tl.scrollTrigger) tl.scrollTrigger.kill();
-      tl.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
